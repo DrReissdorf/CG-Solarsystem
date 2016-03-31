@@ -1,5 +1,7 @@
 #version 150
 
+#define lowestLight 0.0
+
 in vec3 N;  //normalvector
 in vec3 L;    //L=vector to light
 in vec3 V; //V=vector to Camera
@@ -30,7 +32,7 @@ void main(void) {
       else lightIntense = (lightEndDist-distanceToLight)/(lightEndDist-lightStartDist);
       /********************/
 
-      float normalDotlight = max(dot(unitNormal, normalize(L)),0.2);
+      float normalDotlight = max(dot(unitNormal, normalize(L)),lowestLight);
       /*  DIFFUSE LIGHTING LIGHT*/
       vec3 diffuseLighting = normalDotlight * lightColor * lightIntense;
       /********************/
